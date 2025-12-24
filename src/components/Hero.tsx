@@ -1,5 +1,6 @@
 import { Github, Linkedin, Mail, ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
+import profileFormal from '@/assets/profile-formal.jpg';
 
 const Hero = () => {
   return (
@@ -21,6 +22,20 @@ const Hero = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
+          {/* Profile Photo */}
+          <div className="mb-8 animate-fade-up">
+            <div className="relative inline-block">
+              <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-primary/30 shadow-glow mx-auto">
+                <img 
+                  src={profileFormal} 
+                  alt="Lahiru Senadheera" 
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div className="absolute inset-0 rounded-full border-4 border-primary/20 animate-pulse-glow" />
+            </div>
+          </div>
+
           <p className="font-mono text-primary mb-4 animate-fade-up">
             Hello, I'm
           </p>
