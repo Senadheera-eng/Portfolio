@@ -1,5 +1,7 @@
-import { ExternalLink, Github, Leaf, Users, Car } from 'lucide-react';
+import { ExternalLink, Github, Leaf, Users, Car, ArrowUpRight } from 'lucide-react';
 import { Button } from './ui/button';
+import { motion } from 'framer-motion';
+import { AnimatedSection, StaggerContainer, StaggerItem } from './ui/animated-section';
 
 const projects = [
   {
@@ -12,6 +14,8 @@ const projects = [
     icon: Leaf,
     gradient: 'from-green-500/20 to-emerald-600/20',
     iconColor: 'text-green-400',
+    iconBg: 'bg-green-500/10',
+    accentColor: 'green',
   },
   {
     title: 'Civic Link',
@@ -23,6 +27,8 @@ const projects = [
     icon: Users,
     gradient: 'from-blue-500/20 to-cyan-600/20',
     iconColor: 'text-blue-400',
+    iconBg: 'bg-blue-500/10',
+    accentColor: 'blue',
   },
   {
     title: 'Road Safe AI',
@@ -34,103 +40,142 @@ const projects = [
     icon: Car,
     gradient: 'from-orange-500/20 to-red-600/20',
     iconColor: 'text-orange-400',
+    iconBg: 'bg-orange-500/10',
+    accentColor: 'orange',
   },
 ];
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-24 relative">
-      <div className="container mx-auto px-6">
+    <section id="projects" className="py-24 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-72 h-72 bg-accent/5 rounded-full blur-3xl" />
+
+      <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <p className="font-mono text-primary mb-2">03. Projects</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+          <AnimatedSection className="text-center mb-16">
+            <motion.p 
+              className="font-mono text-primary mb-2 inline-flex items-center gap-2"
+              whileHover={{ scale: 1.05 }}
+            >
+              <span className="w-8 h-px bg-primary" />
+              03. Projects
+              <span className="w-8 h-px bg-primary" />
+            </motion.p>
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
               What I've Built
             </h2>
-          </div>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              A collection of projects that showcase my skills in mobile and web development
+            </p>
+          </AnimatedSection>
 
-          <div className="grid lg:grid-cols-3 gap-6">
+          <StaggerContainer className="grid lg:grid-cols-3 gap-8">
             {projects.map((project, index) => {
               const IconComponent = project.icon;
               return (
-                <div
-                  key={project.title}
-                  className="group relative rounded-2xl bg-gradient-card border border-border overflow-hidden card-hover"
-                  style={{ animationDelay: `${index * 0.15}s` }}
-                >
-                  {/* Gradient Overlay */}
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-                  />
+                <StaggerItem key={project.title}>
+                  <motion.div
+                    className="group relative rounded-2xl bg-gradient-card border border-border overflow-hidden h-full"
+                    whileHover={{ y: -12, borderColor: 'hsl(var(--primary) / 0.4)' }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    {/* Gradient Overlay */}
+                    <motion.div
+                      className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                    />
 
-                  <div className="relative p-6 h-full flex flex-col">
-                    {/* Icon & Links Row */}
-                    <div className="flex items-start justify-between mb-4">
-                      <div className={`p-3 rounded-xl bg-secondary ${project.iconColor}`}>
-                        <IconComponent size={28} />
+                    {/* Top Accent Line */}
+                    <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+
+                    <div className="relative p-6 h-full flex flex-col">
+                      {/* Icon & Links Row */}
+                      <div className="flex items-start justify-between mb-6">
+                        <motion.div 
+                          className={`p-4 rounded-2xl ${project.iconBg} ${project.iconColor} group-hover:scale-110 transition-transform duration-300`}
+                          whileHover={{ rotate: [0, -10, 10, 0] }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          <IconComponent size={32} />
+                        </motion.div>
+                        <div className="flex gap-2">
+                          <motion.a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2.5 rounded-xl text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
+                            aria-label="View GitHub Repository"
+                            whileHover={{ scale: 1.1, y: -2 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            <Github size={22} />
+                          </motion.a>
+                          <motion.a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2.5 rounded-xl text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
+                            aria-label="View Project"
+                            whileHover={{ scale: 1.1, y: -2 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            <ExternalLink size={22} />
+                          </motion.a>
+                        </div>
                       </div>
-                      <div className="flex gap-2">
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
-                          aria-label="View GitHub Repository"
-                        >
-                          <Github size={20} />
-                        </a>
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
-                          aria-label="View Project"
-                        >
-                          <ExternalLink size={20} />
-                        </a>
+
+                      {/* Content */}
+                      <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300 flex items-center gap-2">
+                        {project.title}
+                        <ArrowUpRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      </h3>
+                      <p className="text-sm text-primary/80 mb-3 font-medium">{project.subtitle}</p>
+                      <p className="text-muted-foreground text-sm flex-grow mb-6 leading-relaxed">
+                        {project.description}
+                      </p>
+
+                      {/* Tech Stack */}
+                      <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-border/50">
+                        {project.techStack.map((tech, techIndex) => (
+                          <motion.span
+                            key={tech}
+                            className="px-3 py-1 text-xs font-mono text-muted-foreground bg-secondary/80 rounded-full border border-border/50"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: techIndex * 0.05 }}
+                            whileHover={{ scale: 1.05, color: 'hsl(var(--primary))' }}
+                          >
+                            {tech}
+                          </motion.span>
+                        ))}
                       </div>
                     </div>
-
-                    {/* Content */}
-                    <h3 className="text-xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors duration-300">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-primary/80 mb-3">{project.subtitle}</p>
-                    <p className="text-muted-foreground text-sm flex-grow mb-6">
-                      {project.description}
-                    </p>
-
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                      {project.techStack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2 py-1 text-xs font-mono text-muted-foreground bg-secondary rounded"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+                  </motion.div>
+                </StaggerItem>
               );
             })}
-          </div>
+          </StaggerContainer>
 
           {/* View More Button */}
-          <div className="text-center mt-12">
-            <Button variant="outline" size="lg" asChild>
-              <a
-                href="https://github.com/Senadheera-eng"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github className="mr-2" size={20} />
-                View More on GitHub
-              </a>
-            </Button>
-          </div>
+          <AnimatedSection delay={0.3} className="text-center mt-12">
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button variant="outline" size="lg" asChild className="group">
+                <a
+                  href="https://github.com/Senadheera-eng"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
+                  <Github className="group-hover:rotate-12 transition-transform duration-300" size={20} />
+                  View More on GitHub
+                  <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </a>
+              </Button>
+            </motion.div>
+          </AnimatedSection>
         </div>
       </div>
     </section>
