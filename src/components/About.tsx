@@ -6,7 +6,6 @@ import {
   StaggerContainer,
   StaggerItem,
 } from "./ui/animated-section";
-import profileCasual from "@/assets/profile-casual.jpg";
 
 const About = () => {
   return (
@@ -31,57 +30,14 @@ const About = () => {
             </h2>
           </AnimatedSection>
 
-          <div className="grid lg:grid-cols-5 gap-12 items-start">
-            {/* Profile Image */}
-            <motion.div
-              className="lg:col-span-2 flex justify-center"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-            >
-              <div className="relative group">
-                <motion.div
-                  className="w-72 h-96 rounded-2xl overflow-hidden border-2 border-primary/20 shadow-elevated relative z-10"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <img
-                    src={profileCasual}
-                    alt="Lahiru Senadheera"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </motion.div>
-
-                {/* Decorative Elements */}
-                <motion.div
-                  className="absolute -bottom-4 -right-4 w-full h-full rounded-2xl border-2 border-primary/30 -z-10"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                />
-                <motion.div
-                  className="absolute -top-4 -left-4 w-24 h-24 border-2 border-accent/30 rounded-full -z-10"
-                  animate={{ rotate: 360 }}
-                  transition={{
-                    duration: 30,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                />
-              </div>
-            </motion.div>
-
+          <div className="max-w-3xl mx-auto">
             {/* Text Content */}
             <motion.div
-              className="lg:col-span-3 space-y-6"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              className="space-y-6 text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.2 }}
+              transition={{ duration: 0.7 }}
             >
               <p className="text-lg text-muted-foreground leading-relaxed">
                 I'm a third-year Computer Engineering undergraduate at the
@@ -94,7 +50,7 @@ const About = () => {
               </p>
 
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Have skills in{" "}
+                With expertise in{" "}
                 <motion.span
                   className="text-primary font-medium inline-block"
                   whileHover={{ scale: 1.1 }}
@@ -132,7 +88,7 @@ const About = () => {
               </p>
 
               {/* Quick Info Pills */}
-              <div className="flex flex-wrap gap-3 pt-4">
+              <div className="flex flex-wrap justify-center gap-3 pt-4">
                 {[
                   "Problem Solver",
                   "Team Player",
@@ -170,7 +126,7 @@ const About = () => {
               {
                 icon: MapPin,
                 title: "Location",
-                lines: ["Sri Lanka", "Kurunegala"],
+                lines: ["Sri Lanka", "Available for Remote Work"],
                 highlight: null,
               },
               {
