@@ -1,41 +1,51 @@
-import { motion } from 'framer-motion';
-import { AnimatedSection, StaggerContainer, StaggerItem } from './ui/animated-section';
-import { Code2, Palette, Server, Database, Wrench, Zap } from 'lucide-react';
+import { motion } from "framer-motion";
+import {
+  AnimatedSection,
+  StaggerContainer,
+  StaggerItem,
+} from "./ui/animated-section";
+import { Code2, Palette, Server, Database, Wrench, Zap } from "lucide-react";
 
 const skillCategories = [
   {
-    title: 'Programming Languages',
+    title: "Programming Languages",
     icon: Code2,
-    skills: ['C++', 'Java', 'JavaScript', 'Dart', 'Python'],
-    color: 'from-blue-500 to-cyan-500',
+    skills: ["C++", "Java", "JavaScript", "Dart", "Python"],
+    color: "from-blue-500 to-cyan-500",
   },
   {
-    title: 'Frontend',
+    title: "Frontend",
     icon: Palette,
-    skills: ['React', 'Flutter', 'HTML', 'CSS', 'Bootstrap'],
-    color: 'from-purple-500 to-pink-500',
+    skills: ["React", "Flutter", "HTML", "CSS", "Bootstrap"],
+    color: "from-purple-500 to-pink-500",
   },
   {
-    title: 'Backend',
+    title: "Backend",
     icon: Server,
-    skills: ['Node.js', 'Express.js', 'Firebase'],
-    color: 'from-green-500 to-emerald-500',
+    skills: ["Node.js", "Express.js", "Firebase"],
+    color: "from-green-500 to-emerald-500",
   },
   {
-    title: 'Databases',
+    title: "Databases",
     icon: Database,
-    skills: ['MongoDB', 'MySQL', 'Firebase'],
-    color: 'from-orange-500 to-yellow-500',
+    skills: ["MongoDB", "MySQL", "Firebase", "PostgreSQL"],
+    color: "from-orange-500 to-yellow-500",
   },
   {
-    title: 'Tools & Technologies',
+    title: "Tools & Technologies",
     icon: Wrench,
-    skills: ['Git', 'GitHub', 'VS Code', 'Postman', 'Figma', 'Vite'],
-    color: 'from-red-500 to-rose-500',
+    skills: ["Git", "GitHub", "VS Code", "Postman", "Figma"],
+    color: "from-red-500 to-rose-500",
   },
 ];
 
-const focusAreas = ['Flutter Development', 'MERN Stack', 'Machine Learning', 'UI/UX Design', 'Mobile Apps'];
+const focusAreas = [
+  "Flutter Development",
+  "MERN Stack",
+  "Machine Learning",
+  "UI/UX Design",
+  "Mobile Apps",
+];
 
 const Skills = () => {
   return (
@@ -51,7 +61,7 @@ const Skills = () => {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <AnimatedSection className="text-center mb-16">
-            <motion.p 
+            <motion.p
               className="font-mono text-primary mb-2 inline-flex items-center gap-2"
               whileHover={{ scale: 1.05 }}
             >
@@ -63,7 +73,8 @@ const Skills = () => {
               Tech Stack & Tools
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              A diverse toolkit built through hands-on experience with real projects
+              A diverse toolkit built through hands-on experience with real
+              projects
             </p>
           </AnimatedSection>
 
@@ -72,17 +83,20 @@ const Skills = () => {
               <StaggerItem key={category.title}>
                 <motion.div
                   className="p-6 rounded-2xl bg-gradient-card border border-border h-full group relative overflow-hidden"
-                  whileHover={{ y: -8, borderColor: 'hsl(var(--primary) / 0.3)' }}
+                  whileHover={{
+                    y: -8,
+                    borderColor: "hsl(var(--primary) / 0.3)",
+                  }}
                   transition={{ duration: 0.3 }}
                 >
                   {/* Gradient Overlay on Hover */}
-                  <motion.div 
+                  <motion.div
                     className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
                   />
-                  
+
                   <div className="relative z-10">
                     <div className="flex items-center gap-3 mb-4 pb-4 border-b border-border">
-                      <motion.div 
+                      <motion.div
                         className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300"
                         whileHover={{ rotate: 360 }}
                         transition={{ duration: 0.5 }}
@@ -93,7 +107,7 @@ const Skills = () => {
                         {category.title}
                       </h3>
                     </div>
-                    
+
                     <div className="flex flex-wrap gap-2">
                       {category.skills.map((skill, skillIndex) => (
                         <motion.span
@@ -117,13 +131,13 @@ const Skills = () => {
 
           {/* Currently Focusing On */}
           <AnimatedSection delay={0.3} className="mt-16">
-            <motion.div 
+            <motion.div
               className="p-8 rounded-3xl bg-gradient-card border border-border relative overflow-hidden"
-              whileHover={{ borderColor: 'hsl(var(--primary) / 0.3)' }}
+              whileHover={{ borderColor: "hsl(var(--primary) / 0.3)" }}
             >
               {/* Background Glow */}
               <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5" />
-              
+
               <div className="relative z-10">
                 <div className="flex items-center justify-center gap-2 mb-6">
                   <Zap className="w-5 h-5 text-primary" />
@@ -132,7 +146,7 @@ const Skills = () => {
                   </h3>
                   <Zap className="w-5 h-5 text-primary" />
                 </div>
-                
+
                 <div className="flex flex-wrap justify-center gap-4">
                   {focusAreas.map((focus, index) => (
                     <motion.div
