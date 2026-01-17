@@ -40,7 +40,7 @@ const skillCategories = [
 ];
 
 const focusAreas = [
-  "Flutter Development",
+  "Full-Stack web Development",
   "MERN Stack",
   "Machine Learning",
   "UI/UX Design",
